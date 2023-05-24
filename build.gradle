@@ -5,6 +5,8 @@ description = 'LBU-Backchannels'
 group = 'uk.ac.leedsbeckett'
 
 java {
+    withSourcesJar()
+    withJavadocJar()
     toolchain {
             languageVersion.set(JavaLanguageVersion.of(11))
     }
@@ -24,10 +26,6 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0'
 }
 
-jar {
-    manifest {
-    }
-}
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
