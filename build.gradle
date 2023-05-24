@@ -1,6 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
+description = 'LBU-Backchannels'
+group = 'uk.ac.leedsbeckett'
+
 java {
     toolchain {
             languageVersion.set(JavaLanguageVersion.of(11))
@@ -29,4 +32,22 @@ jar {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+publishing {
+  publications {
+    library(MavenPublication) {
+      from components.java
+    }
+  }
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url "https://maven.pkg.github.com/leeds-beckett-digital-learning/lbu-backchannels"
+      credentials {
+        username = gitHubUserName
+        password = gitHubPrivateToken
+      }
+    }
+  }
 }
